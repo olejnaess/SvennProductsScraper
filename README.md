@@ -113,3 +113,23 @@ By instatiating a ScrapeData('category_l1', 'category_l2') object and applying a
 3. AvailabilityEans() object is instantiated to fetch the detailed availability of each individual 'ean' found on first step. Data is stored on filepath /data/category_l1/category_l2/availability/{ean}\_availability.json. Code can be found on /src/get_availability/scraping_availability.py
 4. PriceEans() object is instantiated to fetch the detailed prices of each individual 'ean' found on first step. Data is stored on filepath /data/category_l1/category_l2/prices/{ean}\_prices.json. Code can be found on /src/get_prices/scraping_prices.py
 5. All errors and important milestones of the code is logged on /logs/scraping.log
+
+# Inserting Product Data into MongoDB
+
+## Running the python script
+- Clone this repo to your local machine
+- Create a python virtual environment
+- Install necessary auxiliary libs
+
+```
+pip install -r requirements.txt
+```
+
+- Run the python script
+```
+python3 sync_mongodb.py
+```
+
+### Note: 
+- The script expects a .env file with `MONGODB_URI` specified
+- This script currently processes data from the `.json` files, creates documents, and inserts them into your collection. The current version *does not* handle merging data with existing documents in mongodb
